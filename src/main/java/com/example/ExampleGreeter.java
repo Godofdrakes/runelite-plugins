@@ -1,7 +1,7 @@
 package com.example;
 
 import com.rlrx.ClientThread;
-import com.rlrx.GameStateObservable;
+import com.rlrx.GameStateChangedObservable;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -20,7 +20,7 @@ public class ExampleGreeter
 	public ExampleGreeter(
 		Client client,
 		ExampleConfig config,
-		GameStateObservable gameState,
+		GameStateChangedObservable gameState,
 		@ClientThread Scheduler clientThread )
 	{
 		this.disposable = new CompositeDisposable();

@@ -1,8 +1,11 @@
 package com.rlrx;
 
 import com.google.inject.Binder;
+import com.google.inject.Injector;
 import com.google.inject.Scopes;
+import com.google.inject.TypeLiteral;
 import io.reactivex.rxjava3.core.Scheduler;
+import net.runelite.client.eventbus.EventBus;
 
 import javax.annotation.Nonnull;
 
@@ -15,15 +18,16 @@ public final class PluginRx
 			.annotatedWith( ClientThread.class )
 			.toProvider( ClientSchedulerProvider.class )
 			.in( Scopes.SINGLETON );
+	}
 
-		// In order to keep EventSubject testable it does not bind to the EventBus
-		// Instead we use a provider to handle that
-		binder.bind( EventSubject.class )
-			.toProvider( EventProvider.class )
-			.in( Scopes.SINGLETON );
+	public static <T> void configureEventBus( @Nonnull EventBus eventBus )
+	{
 
-		// Implement all event observables using EventSubject
-		binder.bind( GameStateObservable.class ).to( EventSubject.class );
-		binder.bind( GameTickObservable.class ).to( EventSubject.class );
+	}
+
+	public static <T> void configureEvent( @Nonnull Binder binder, @Nonnull Class<T> clazz )
+	{
+		final var serviceType = new TypeLiteral<EventObservable<T>>() { };
+		binder.bind( serviceType ).toInstance( new EventSubject<>( clazz ) );
 	}
 }

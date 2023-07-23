@@ -1,41 +1,44 @@
 package com.rlrx;
 
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.disposables.SerialDisposable;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 import io.reactivex.rxjava3.subjects.Subject;
-import net.runelite.api.GameState;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.GameTick;
-import net.runelite.client.eventbus.Subscribe;
+import lombok.RequiredArgsConstructor;
+import net.runelite.client.eventbus.EventBus;
 
-public final class EventSubject
-	implements GameStateObservable,
-		GameTickObservable
+@RequiredArgsConstructor
+public class EventSubject<T>
+	implements EventObservable<T>, Disposable
 {
-	private final Subject<GameStateChanged> gameStateChangedSubject = PublishSubject.create();
-	private final Subject<GameTick> gameTickSubject = PublishSubject.create();
+	private final Subject<T> subject = PublishSubject.create();
 
-	@Subscribe
-	public void onGameStateChanged( GameStateChanged event )
-	{
-		gameStateChangedSubject.onNext( event );
-	}
+	private final SerialDisposable disposable = new SerialDisposable();
 
-	@Subscribe
-	public void onGameTick( GameTick event )
+	private final Class<T> clazz;
+
+	public void subscribe( EventBus eventBus )
 	{
-		gameTickSubject.onNext( event );
+		var subscriber = eventBus.register( clazz, subject::onNext, 0 );
+		disposable.set( Disposable.fromAction( () -> eventBus.unregister( subscriber ) ) );
 	}
 
 	@Override
-	public Observable<GameState> gameStateChanged()
+	public Observable<T> event()
 	{
-		return gameStateChangedSubject.map( GameStateChanged::getGameState );
+		return Observable.wrap( subject );
 	}
 
 	@Override
-	public Observable<GameTick> gameTick()
+	public void dispose()
 	{
-		return null;
+		disposable.dispose();
+	}
+
+	@Override
+	public boolean isDisposed()
+	{
+		return disposable.isDisposed();
 	}
 }
