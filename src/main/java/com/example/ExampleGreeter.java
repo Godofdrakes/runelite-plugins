@@ -1,13 +1,14 @@
 package com.example;
 
-import com.rlrx.ClientThread;
-import com.rlrx.GameStateChangedObservable;
-import io.reactivex.rxjava3.core.Scheduler;
+import com.rlrx.EventObservables;
+import com.rlrx.RuneLiteSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Predicate;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
+import net.runelite.api.events.GameStateChanged;
 
 import javax.inject.Inject;
 
@@ -20,14 +21,16 @@ public class ExampleGreeter
 	public ExampleGreeter(
 		Client client,
 		ExampleConfig config,
-		GameStateChangedObservable gameState,
-		@ClientThread Scheduler clientThread )
+		EventObservables events,
+		RuneLiteSchedulers schedulers )
 	{
-		this.disposable = new CompositeDisposable();
-		this.disposable.add(
-			gameState
-				.gameStateChanged( GameState.LOGGED_IN )
-				.observeOn( clientThread )
+		final Predicate<GameStateChanged> onLoggedIn = event ->
+			event.getGameState() == GameState.LOGGED_IN;
+
+		disposable = new CompositeDisposable();
+		disposable.add(
+			events.onEvent( GameStateChanged.class, onLoggedIn )
+				.observeOn( schedulers.clientThreadScheduler() )
 				.subscribe( state -> client.addChatMessage(
 					ChatMessageType.GAMEMESSAGE,
 					"",
