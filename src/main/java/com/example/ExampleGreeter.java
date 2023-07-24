@@ -1,6 +1,6 @@
 package com.example;
 
-import com.rlrx.EventObservables;
+import com.rlrx.EventObservable;
 import com.rlrx.RuneLiteSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -21,7 +21,7 @@ public class ExampleGreeter
 	public ExampleGreeter(
 		Client client,
 		ExampleConfig config,
-		EventObservables events,
+		EventObservable events,
 		RuneLiteSchedulers schedulers )
 	{
 		final Predicate<GameStateChanged> onLoggedIn = event ->
@@ -30,7 +30,7 @@ public class ExampleGreeter
 		disposable = new CompositeDisposable();
 		disposable.add(
 			events.onEvent( GameStateChanged.class, onLoggedIn )
-				.observeOn( schedulers.clientThreadScheduler() )
+				.observeOn( schedulers.clientThreadEndOfFrameScheduler() )
 				.subscribe( state -> client.addChatMessage(
 					ChatMessageType.GAMEMESSAGE,
 					"",

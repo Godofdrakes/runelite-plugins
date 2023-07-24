@@ -9,6 +9,6 @@ public final class PluginRx
 	public static void configure( @Nonnull Binder binder )
 	{
 		binder.bind( RuneLiteSchedulers.class ).to( RuneLiteSchedulersImpl.class );
-		binder.bind( EventObservables.class ).to( EventSubjects.class );
+		binder.bind( EventObservable.class ).to( EventSubject.class );
 	}
 }

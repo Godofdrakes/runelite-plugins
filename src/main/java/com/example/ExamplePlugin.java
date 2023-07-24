@@ -21,9 +21,6 @@ public class ExamplePlugin extends Plugin
 	@Inject
 	private PluginSubject pluginSubject;
 
-	@Inject
-	private ExampleGreeter greeter;
-
 	private final CompositeDisposable disposable = new CompositeDisposable();
 
 	@Override
@@ -31,7 +28,7 @@ public class ExamplePlugin extends Plugin
 	{
 		log.info( "Example started!" );
 
-		disposable.add( greeter );
+ 		disposable.add( this.getInjector().getInstance( ExampleGreeter.class ) );
 
 		pluginSubject.onStartUp( this );
 	}

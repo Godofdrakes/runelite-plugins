@@ -6,13 +6,13 @@ import net.runelite.client.eventbus.EventBus;
 
 import javax.inject.Inject;
 
-public class EventSubjects
-	implements EventObservables
+public class EventSubject
+	implements EventObservable
 {
 	private final EventBus eventBus;
 
 	@Inject
-	public EventSubjects( EventBus eventBus )
+	public EventSubject( EventBus eventBus )
 	{
 		this.eventBus = eventBus;
 	}

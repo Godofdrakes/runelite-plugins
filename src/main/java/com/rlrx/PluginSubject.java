@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.subjects.Subject;
 import net.runelite.client.plugins.Plugin;
 
 public final class PluginSubject
-	implements PluginObservables
+	implements PluginObservable
 {
 	private final Subject<Plugin> startUpSubject = PublishSubject.create();
 	private final Subject<Plugin> shutDownSubject = PublishSubject.create();
