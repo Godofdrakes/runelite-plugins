@@ -2,8 +2,8 @@ package com.example;
 
 import com.google.inject.Binder;
 import com.google.inject.Provides;
-import com.rlrx.PluginRx;
-import com.rlrx.PluginSubject;
+import com.pluginrx.PluginRx;
+import com.pluginrx.services.PluginSubject;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.ConfigManager;

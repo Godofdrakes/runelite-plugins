@@ -1,7 +1,7 @@
 package com.example;
 
-import com.rlrx.EventObservable;
-import com.rlrx.RuneLiteSchedulers;
+import com.pluginrx.IEventObservable;
+import com.pluginrx.IPluginSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Predicate;
@@ -21,8 +21,8 @@ public class ExampleGreeter
 	public ExampleGreeter(
 		Client client,
 		ExampleConfig config,
-		EventObservable events,
-		RuneLiteSchedulers schedulers )
+		IEventObservable events,
+		IPluginSchedulers schedulers )
 	{
 		final Predicate<GameStateChanged> onLoggedIn = event ->
 			event.getGameState() == GameState.LOGGED_IN;

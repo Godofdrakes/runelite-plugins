@@ -1,5 +1,7 @@
-package com.rlrx;
+package com.pluginrx.services;
 
+import com.pluginrx.IEventObservable;
+import com.pluginrx.IPluginSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 import net.runelite.client.eventbus.EventBus;
@@ -7,13 +9,17 @@ import net.runelite.client.eventbus.EventBus;
 import javax.inject.Inject;
 
 public class EventSubject
-	implements EventObservable
+	implements IEventObservable
 {
+	private final IPluginSchedulers schedulers;
 	private final EventBus eventBus;
 
 	@Inject
-	public EventSubject( EventBus eventBus )
+	public EventSubject(
+		IPluginSchedulers schedulers,
+		EventBus eventBus)
 	{
+		this.schedulers = schedulers;
 		this.eventBus = eventBus;
 	}
 

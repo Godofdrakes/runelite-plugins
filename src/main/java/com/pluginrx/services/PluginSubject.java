@@ -1,12 +1,13 @@
-package com.rlrx;
+package com.pluginrx.services;
 
+import com.pluginrx.IPluginObservable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 import io.reactivex.rxjava3.subjects.Subject;
 import net.runelite.client.plugins.Plugin;
 
 public final class PluginSubject
-	implements PluginObservable
+	implements IPluginObservable
 {
 	private final Subject<Plugin> startUpSubject = PublishSubject.create();
 	private final Subject<Plugin> shutDownSubject = PublishSubject.create();

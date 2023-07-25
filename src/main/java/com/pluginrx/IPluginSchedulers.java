@@ -1,8 +1,8 @@
-package com.rlrx;
+package com.pluginrx;
 
 import io.reactivex.rxjava3.core.Scheduler;
 
-public interface RuneLiteSchedulers
+public interface IPluginSchedulers
 {
 	// If client thread run now, else run on next client thread update
 	Scheduler clientThreadScheduler();
