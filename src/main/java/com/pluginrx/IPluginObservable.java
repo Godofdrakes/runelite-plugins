@@ -6,5 +6,6 @@ import net.runelite.client.plugins.Plugin;
 public interface IPluginObservable
 {
 	Observable<Plugin> startUp();
+
 	Observable<Plugin> shutDown();
 }

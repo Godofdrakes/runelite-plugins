@@ -12,7 +12,7 @@ public class PluginSchedulers
 	private final ClientThread clientThread;
 
 	@Inject
-	public PluginSchedulers(ClientThread clientThread )
+	public PluginSchedulers( ClientThread clientThread )
 	{
 		this.clientThread = clientThread;
 	}

@@ -28,7 +28,7 @@ public class ExamplePlugin extends Plugin
 	{
 		log.info( "Example started!" );
 
- 		disposable.add( this.getInjector().getInstance( ExampleGreeter.class ) );
+		disposable.add( this.getInjector().getInstance( ExampleGreeter.class ) );
 
 		pluginSubject.onStartUp( this );
 	}

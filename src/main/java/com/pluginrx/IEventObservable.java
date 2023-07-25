@@ -2,6 +2,7 @@ package com.pluginrx;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.functions.Predicate;
+import net.runelite.api.events.VarbitChanged;
 
 public interface IEventObservable
 {
@@ -17,5 +18,16 @@ public interface IEventObservable
 	default <T> Observable<T> onEvent( Class<T> eventClass, Predicate<T> predicate )
 	{
 		return onEvent( eventClass ).filter( predicate );
+	}
+
+	default Observable<Integer> onVarbitChanged( int varbitId )
+	{
+		return onEvent( VarbitChanged.class, event -> event.getVarbitId() == varbitId )
+				.map( VarbitChanged::getValue );
+	}
+
+	default Observable<VarbitChanged> onVarpChanged( int varpId )
+	{
+		return onEvent( VarbitChanged.class, event -> event.getVarpId() == varpId );
 	}
 }
