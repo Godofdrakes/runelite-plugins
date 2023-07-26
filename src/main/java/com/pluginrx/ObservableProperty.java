@@ -1,13 +1,9 @@
 package com.pluginrx;
 
-import io.reactivex.rxjava3.core.*;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.Consumer;
-import io.reactivex.rxjava3.functions.Function;
-import io.reactivex.rxjava3.functions.Supplier;
-import io.reactivex.rxjava3.internal.functions.Functions;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.BehaviorSubject;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 import io.reactivex.rxjava3.subjects.Subject;
@@ -19,6 +15,21 @@ public final class ObservableProperty<T>
 	public static <T> ObservableProperty<T> create( Observable<T> observable, T defaultValue, Scheduler scheduler )
 	{
 		return new ObservableProperty<>( observable, defaultValue, scheduler );
+	}
+
+	public static <T> ObservableProperty<T> create( Observable<T> observable, Scheduler scheduler )
+	{
+		return new ObservableProperty<>( observable, null, scheduler );
+	}
+
+	public static <T> ObservableProperty<T> create( Observable<T> observable, T defaultValue )
+	{
+		return new ObservableProperty<>( observable, defaultValue, null );
+	}
+
+	public static <T> ObservableProperty<T> create( Observable<T> observable )
+	{
+		return new ObservableProperty<>( observable, null, null );
 	}
 
 	private final CompositeDisposable disposable;
