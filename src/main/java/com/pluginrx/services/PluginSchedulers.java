@@ -6,6 +6,8 @@ import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import net.runelite.client.callback.ClientThread;
 
+import javax.swing.*;
+
 public class PluginSchedulers
 	implements IPluginSchedulers
 {
@@ -18,20 +20,26 @@ public class PluginSchedulers
 	}
 
 	@Override
-	public Scheduler clientThreadScheduler()
+	public Scheduler clientThread()
 	{
 		return Schedulers.from( clientThread::invoke );
 	}
 
 	@Override
-	public Scheduler clientThreadDeferredScheduler()
+	public Scheduler clientThreadDeferred()
 	{
 		return Schedulers.from( clientThread::invokeLater );
 	}
 
 	@Override
-	public Scheduler clientThreadEndOfFrameScheduler()
+	public Scheduler clientThreadEndOfFrame()
 	{
 		return Schedulers.from( clientThread::invokeAtTickEnd );
+	}
+
+	@Override
+	public Scheduler guiThread()
+	{
+		return Schedulers.from( SwingUtilities::invokeLater );
 	}
 }

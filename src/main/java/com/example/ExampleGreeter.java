@@ -30,7 +30,7 @@ public class ExampleGreeter
 		disposable = new CompositeDisposable();
 		disposable.add(
 			events.onEvent( GameStateChanged.class, onLoggedIn )
-				.observeOn( schedulers.clientThreadEndOfFrameScheduler() )
+				.observeOn( schedulers.clientThreadEndOfFrame() )
 				.subscribe( state -> client.addChatMessage(
 					ChatMessageType.GAMEMESSAGE,
 					"",
