@@ -1,4 +1,4 @@
-package com.pluginrx;
+package com.PluginRx;
 
 import io.reactivex.rxjava3.core.Scheduler;
 

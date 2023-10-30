@@ -1,7 +1,7 @@
-package com.pluginrx;
+package com.PluginRx;
 
 import com.google.inject.Binder;
-import com.pluginrx.services.*;
+import com.PluginRx.services.*;
 
 import javax.annotation.Nonnull;
 

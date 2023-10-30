@@ -1,7 +1,7 @@
-package com.pluginrx.services;
+package com.PluginRx.services;
 
 import com.google.inject.Inject;
-import com.pluginrx.IPluginSchedulers;
+import com.PluginRx.IPluginSchedulers;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import net.runelite.client.callback.ClientThread;

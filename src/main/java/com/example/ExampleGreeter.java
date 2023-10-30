@@ -1,7 +1,7 @@
 package com.example;
 
-import com.pluginrx.IEventObservable;
-import com.pluginrx.IPluginSchedulers;
+import com.PluginRx.IEventObservable;
+import com.PluginRx.IPluginSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Predicate;

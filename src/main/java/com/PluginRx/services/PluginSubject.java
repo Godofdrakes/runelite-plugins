@@ -1,6 +1,6 @@
-package com.pluginrx.services;
+package com.PluginRx.services;
 
-import com.pluginrx.IPluginObservable;
+import com.PluginRx.IPluginObservable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 import io.reactivex.rxjava3.subjects.Subject;
