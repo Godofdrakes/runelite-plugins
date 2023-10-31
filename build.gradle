@@ -25,7 +25,7 @@ dependencies {
 	testImplementation group: 'net.runelite', name:'jshell', version: runeLiteVersion
 }
 
-group = 'com.AreaMarkers'
+group = 'com.CustomMarkers'
 version = '1.0-SNAPSHOT'
 
 tasks.withType(JavaCompile) {
