@@ -1,4 +1,4 @@
-package com.PluginUI;
+package com.RxRunelite.UI;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.subjects.PublishSubject;

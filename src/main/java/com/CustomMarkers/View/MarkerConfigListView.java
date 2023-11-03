@@ -1,7 +1,6 @@
 package com.CustomMarkers.View;
 
-import com.RxRunelite.IPluginSchedulers;
-import com.PluginUI.SearchBarRx;
+import com.RxRunelite.UI.SearchBarRx;
 import hu.akarnokd.rxjava3.swing.SwingSchedulers;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.ui.components.DragAndDropReorderPane;

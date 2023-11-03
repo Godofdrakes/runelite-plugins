@@ -1,4 +1,4 @@
-package com.PluginUI;
+package com.RxRunelite.UI;
 
 import hu.akarnokd.rxjava3.swing.SwingObservable;
 import hu.akarnokd.rxjava3.swing.SwingSchedulers;

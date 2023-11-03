@@ -1,7 +1,6 @@
 package com.CustomMarkers.View;
 
-import com.RxRunelite.IPluginSchedulers;
-import com.PluginUI.MultiplexingPluginPanelRx;
+import com.RxRunelite.UI.MultiplexingPluginPanelRx;
 import com.google.inject.Inject;
 import net.runelite.client.ui.PluginPanel;
 
