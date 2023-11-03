@@ -1,8 +1,8 @@
 package com.CustomMarkers;
 
 import com.CustomMarkers.View.MarkerConfigView;
-import com.PluginRx.IPluginSchedulers;
-import com.PluginRx.PluginRx;
+import com.RxRunelite.IPluginSchedulers;
+import com.RxRunelite.RxPlugin;
 import com.google.inject.Binder;
 import com.google.inject.Inject;
 import com.google.inject.Provides;
@@ -28,9 +28,6 @@ public class CustomMarkersPlugin
 	private NavigationButton navButton;
 
 	@Inject
-	private IPluginSchedulers schedulers;
-
-	@Inject
 	private ClientToolbar toolbar;
 
 	@Provides
@@ -42,7 +39,7 @@ public class CustomMarkersPlugin
 	@Override
 	public void configure( Binder binder )
 	{
-		PluginRx.configure( binder );
+		RxPlugin.configure( binder );
 	}
 
 	@Override
@@ -50,7 +47,7 @@ public class CustomMarkersPlugin
 	{
 		disposable = new CompositeDisposable();
 
-		this.panel = new MarkerConfigView(schedulers);
+		this.panel = new MarkerConfigView();
 		this.navButton = NavigationButton.builder()
 			.tooltip( "Custom Markers" )
 			.priority( 1 )

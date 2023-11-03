@@ -1,7 +1,8 @@
 package com.CustomMarkers.View;
 
-import com.PluginRx.IPluginSchedulers;
+import com.RxRunelite.IPluginSchedulers;
 import com.PluginUI.SearchBarRx;
+import hu.akarnokd.rxjava3.swing.SwingSchedulers;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.ui.components.DragAndDropReorderPane;
 
@@ -13,8 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class MarkerConfigListView
 	extends JPanel
 {
-	public MarkerConfigListView(
-		IPluginSchedulers schedulers )
+	public MarkerConfigListView()
 	{
 		this.setLayout( new BorderLayout() );
 
@@ -38,9 +38,10 @@ public class MarkerConfigListView
 
 		this.add( scrollPane );
 
-		searchBar.text()
+		searchBar.getText()
 			.throttleLatest( 100, TimeUnit.MILLISECONDS )
-			.observeOn( schedulers.guiThread() )
+			// Throttle runs on a worker thread. Bring it back to the UI thread.
+			.observeOn( SwingSchedulers.edt() )
 			.subscribe( this::filter );
 	}
 

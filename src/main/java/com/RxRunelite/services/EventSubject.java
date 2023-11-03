@@ -1,6 +1,6 @@
-package com.PluginRx.services;
+package com.RxRunelite.services;
 
-import com.PluginRx.IEventObservable;
+import com.RxRunelite.IEventObservable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 import io.reactivex.rxjava3.subjects.Subject;

@@ -1,4 +1,4 @@
-package com.PluginRx;
+package com.RxRunelite;
 
 import io.reactivex.rxjava3.core.Scheduler;
 
@@ -12,9 +12,5 @@ public interface IPluginSchedulers
 
 	// Run on next client thread update, at end of frame
 	Scheduler clientThreadEndOfFrame();
-
-	// Run on the next gui thread update
-	// Based on source examples this is for updating the RuneLite GUI specifically.
-	Scheduler guiThread();
 }
 

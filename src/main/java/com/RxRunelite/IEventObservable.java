@@ -1,4 +1,4 @@
-package com.PluginRx;
+package com.RxRunelite;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.functions.Predicate;

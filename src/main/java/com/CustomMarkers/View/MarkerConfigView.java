@@ -1,6 +1,6 @@
 package com.CustomMarkers.View;
 
-import com.PluginRx.IPluginSchedulers;
+import com.RxRunelite.IPluginSchedulers;
 import com.PluginUI.MultiplexingPluginPanelRx;
 import com.google.inject.Inject;
 import net.runelite.client.ui.PluginPanel;
@@ -16,11 +16,11 @@ public class MarkerConfigView
 	private final MarkerConfigListView listView;
 
 	@Inject
-	public MarkerConfigView( IPluginSchedulers schedulers )
+	public MarkerConfigView()
 	{
-		super(false);
+		super( false );
 
-		listView = new MarkerConfigListView( schedulers );
+		listView = new MarkerConfigListView();
 	}
 
 	@Override
@@ -28,17 +28,17 @@ public class MarkerConfigView
 	{
 		this.removeAll();
 
-		final var titleLabel = new JLabel("Custom Markers");
+		final var titleLabel = new JLabel( "Custom Markers" );
 
 		titleLabel.setFont( titleLabel.getFont().deriveFont( Font.BOLD ) );
 		titleLabel.setHorizontalAlignment( JLabel.CENTER );
 		titleLabel.setForeground( Color.WHITE );
 
-		final var titlePanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 3));
+		final var titlePanel = new JPanel( new FlowLayout( FlowLayout.LEFT, 0, 3 ) );
 
 		titlePanel.add( titleLabel );
 
-		final var topPanel = new JPanel(new BorderLayout());
+		final var topPanel = new JPanel( new BorderLayout() );
 
 		topPanel.add( titlePanel );
 

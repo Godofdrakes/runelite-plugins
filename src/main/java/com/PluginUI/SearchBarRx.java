@@ -1,18 +1,22 @@
 package com.PluginUI;
 
+import hu.akarnokd.rxjava3.swing.SwingObservable;
+import hu.akarnokd.rxjava3.swing.SwingSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.subjects.BehaviorSubject;
 import io.reactivex.rxjava3.subjects.Subject;
+import lombok.Getter;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.components.IconTextField;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+@Getter
 public class SearchBarRx
 	extends IconTextField
 {
-	private final Subject<String> text = BehaviorSubject.createDefault( "" );
+	private final Observable<String> text;
 
 	public SearchBarRx()
 	{
@@ -21,32 +25,12 @@ public class SearchBarRx
 		this.setBackground( ColorScheme.DARKER_GRAY_COLOR );
 		this.setHoverBackgroundColor( ColorScheme.DARKER_GRAY_HOVER_COLOR );
 
-		final var listener = new DocumentListener()
-		{
-			@Override
-			public void insertUpdate( DocumentEvent e )
+		text = SwingObservable
+			.document( this.getDocument() )
+			.map( event ->
 			{
-				text.onNext( getText() );
-			}
-
-			@Override
-			public void removeUpdate( DocumentEvent e )
-			{
-				text.onNext( getText() );
-			}
-
-			@Override
-			public void changedUpdate( DocumentEvent e )
-			{
-				text.onNext( getText() );
-			}
-		};
-
-		this.getDocument().addDocumentListener( listener );
-	}
-
-	public Observable<String> text()
-	{
-		return Observable.wrap( text );
+				var document = event.getDocument();
+				return document.getText( 0, document.getLength() );
+			});
 	}
 }

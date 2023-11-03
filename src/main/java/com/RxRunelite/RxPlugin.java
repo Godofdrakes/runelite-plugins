@@ -1,11 +1,11 @@
-package com.PluginRx;
+package com.RxRunelite;
 
 import com.google.inject.Binder;
-import com.PluginRx.services.*;
+import com.RxRunelite.services.*;
 
 import javax.annotation.Nonnull;
 
-public final class PluginRx
+public final class RxPlugin
 {
 	public static void configure( @Nonnull Binder binder )
 	{

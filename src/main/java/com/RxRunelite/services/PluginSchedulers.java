@@ -1,7 +1,7 @@
-package com.PluginRx.services;
+package com.RxRunelite.services;
 
 import com.google.inject.Inject;
-import com.PluginRx.IPluginSchedulers;
+import com.RxRunelite.IPluginSchedulers;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import net.runelite.client.callback.ClientThread;
@@ -35,11 +35,5 @@ public class PluginSchedulers
 	public Scheduler clientThreadEndOfFrame()
 	{
 		return Schedulers.from( clientThread::invokeAtTickEnd );
-	}
-
-	@Override
-	public Scheduler guiThread()
-	{
-		return Schedulers.from( SwingUtilities::invokeLater );
 	}
 }
