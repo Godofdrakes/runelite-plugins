@@ -1,7 +1,6 @@
 package com.CustomMarkers;
 
 import com.CustomMarkers.View.MarkerConfigView;
-import com.RxRunelite.IPluginSchedulers;
 import com.RxRunelite.RxPlugin;
 import com.google.inject.Binder;
 import com.google.inject.Inject;
@@ -48,6 +47,7 @@ public class CustomMarkersPlugin
 		disposable = new CompositeDisposable();
 
 		this.panel = new MarkerConfigView();
+		// @todo: must have an icon
 		this.navButton = NavigationButton.builder()
 			.tooltip( "Custom Markers" )
 			.priority( 1 )
